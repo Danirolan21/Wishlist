@@ -55,4 +55,14 @@ html {
   text-decoration: line-through;
 }
 
+.wish-list__item--warn {
+  transition: all 1s;
+  background-color: orange
+}
+
+.wish-list__item--danger {
+  transition: all 1s;
+  background-color: red
+}
+
 /*# sourceMappingURL=/src.6ebfba02.css.map */

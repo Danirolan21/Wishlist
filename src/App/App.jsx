@@ -29,7 +29,10 @@ export default function App() {
     <div className="app">
       <h1>My wishlist</h1>
       <WishInput onNewWish={onNewWish} />
-      <WishList wishes={wishes} />
+      <WishList
+        wishes={wishes}
+        setwishes={setwishes}
+      />
     </div>
   );
 }

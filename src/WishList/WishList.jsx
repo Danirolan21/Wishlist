@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import WishItem from './WishItem';
 
-export default function WishList({ wishes }) {
+export default function WishList({ wishes, setwishes }) {
   return (
     <ul className="wish-list">
       {wishes
-        .map((wish) => (
-          <li
-            key={wish.id}
-            className={`
-              wish-list__item 
-              ${wish.completed ? 'wish-list__item--done' : ''}
-              `}
-          >
-            <input type="checkbox" checked={wish.completed} />
-            {' '}
-            {wish.text}
-          </li>
+        .map((wish, i) => (
+          <WishItem
+            wish={wish}
+            onCompletedChange={(checked) => {
+              const tempWishes = [...wishes];
+              tempWishes[i].completed = checked;
+              setwishes(tempWishes);
+            }}
+          />
         ))}
-      {/* .map((wish) => <li key={wish.id}>{wish.text}</li>) */}
     </ul>
   );
 }
@@ -29,8 +26,11 @@ WishList.propTypes = {
     text: PropTypes.string,
     completed: PropTypes.bool,
   })),
+
+  setwishes: PropTypes.func,
 };
 
 WishList.defaultProps = {
   wishes: [],
+  setwishes: () => [],
 };
